@@ -5,13 +5,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ZC Customs - Holiday Special</title>
 <style>
-/* General body */
+/* General */
 body {
     margin: 0;
     font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
     background: linear-gradient(to bottom, #00416a, #e4f1fe);
     color: #fff;
-    overflow-x: hidden;
 }
 
 /* Header */
@@ -19,7 +18,6 @@ header {
     text-align: center;
     padding: 60px 20px;
     background: linear-gradient(to right, #ff4d4d, #ffb347);
-    position: relative;
     box-shadow: 0 5px 15px rgba(0,0,0,0.2);
 }
 
@@ -27,31 +25,11 @@ header h1 {
     margin: 0;
     font-size: 3em;
     text-shadow: 2px 2px 10px #000;
-    color: #fff;
 }
 
 header p {
     font-size: 1.3em;
     margin-top: 10px;
-}
-
-/* Snow animation */
-.snowflake {
-    position: fixed;
-    top: -10px;
-    z-index: 1000;
-    font-size: 1.5em;
-    color: #fff;
-    user-select: none;
-    pointer-events: none;
-    animation-name: fall;
-    animation-timing-function: linear;
-    animation-iteration-count: infinite;
-}
-
-@keyframes fall {
-    0% { transform: translateY(0px) rotate(0deg); }
-    100% { transform: translateY(100vh) rotate(360deg); }
 }
 
 /* Main content */
@@ -70,7 +48,6 @@ section {
     box-shadow: 0 5px 15px rgba(0,0,0,0.3);
 }
 
-/* Section headings */
 h2 {
     color: #ffd700;
     font-size: 2em;
@@ -78,30 +55,72 @@ h2 {
     text-align: center;
 }
 
-/* Game area */
-#game {
-    position: relative;
-    height: 400px;
-    background: linear-gradient(to bottom, #00416a, #002540);
-    overflow: hidden;
-    border-radius: 10px;
-    margin-top: 20px;
+/* Services grid */
+.services {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
 }
 
-.present {
-    position: absolute;
-    width: 50px;
-    height: 50px;
-    background-color: #ff4d4d;
-    border-radius: 5px;
-    cursor: pointer;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+.service-card {
+    width: 180px;
+    height: 120px;
+    background-color: #1e3c72;
+    border-radius: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-weight: bold;
-    color: #fff;
-    font-size: 1.2em;
+    font-size: 1.1em;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.service-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 15px rgba(0,0,0,0.5);
+}
+
+/* Presents grid */
+.presents {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.present {
+    width: 80px;
+    height: 80px;
+    background: #ff4d4d;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2em;
+    cursor: default;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    position: relative;
+}
+
+.present:hover {
+    transform: translateY(-5px);
+    transition: 0.2s;
+}
+
+.present::after {
+    content: "1XMAS0";
+    position: absolute;
+    bottom: -25px;
+    font-size: 0.9em;
+    color: #ffd700;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.present:hover::after {
+    opacity: 1;
 }
 
 /* Footer */
@@ -110,12 +129,15 @@ footer {
     padding: 20px;
     color: #ccc;
     font-size: 0.9em;
+    margin-top: 40px;
 }
 
 /* Responsive */
 @media(max-width:600px){
     header h1 { font-size: 2em; }
     h2 { font-size: 1.5em; }
+    .present { width: 60px; height: 60px; font-size: 1.5em; }
+    .service-card { width: 140px; height: 100px; font-size: 1em; }
 }
 </style>
 </head>
@@ -123,20 +145,41 @@ footer {
 
 <header>
     <h1>🎄 ZC Customs Holiday Special 🎄</h1>
-    <p>Enjoy the festive season with exclusive discounts!</p>
+    <p>Celebrate the season with exclusive offers!</p>
 </header>
 
 <main>
+<!-- About Section -->
 <section>
     <h2>About Us</h2>
-    <p>Welcome to ZC Customs! We specialize in <strong>ELS Liveries</strong>, <strong>Discord bots</strong>, and <strong>graphics</strong>. Celebrate the holidays with us and grab a special discount by playing our fun game!</p>
+    <p>Welcome to ZC Customs! We specialize in high-quality services and products. Explore what we offer below:</p>
 </section>
 
+<!-- Services Section -->
 <section>
-    <h2>Click the Presents Game 🎁</h2>
-    <p>Click on the falling presents to reveal a 10% off code!</p>
-    <div id="game"></div>
-    <p id="reward" style="text-align:center; font-size:1.2em; margin-top:15px;"></p>
+    <h2>What We Do</h2>
+    <div class="services">
+        <div class="service-card">ELS</div>
+        <div class="service-card">Liveries</div>
+        <div class="service-card">Graphics</div>
+        <div class="service-card">Uniforms</div>
+        <div class="service-card">Bots</div>
+        <div class="service-card">Discord Servers</div>
+    </div>
+</section>
+
+<!-- Presents Game -->
+<section>
+    <h2>Find Your Present 🎁</h2>
+    <p>Hover over a present to reveal a 10% off code!</p>
+    <div class="presents">
+        <div class="present">🎁</div>
+        <div class="present">🎁</div>
+        <div class="present">🎁</div>
+        <div class="present">🎁</div>
+        <div class="present">🎁</div>
+    </div>
+    <p style="text-align:center; margin-top:15px;">Use code: <strong>1XMAS0</strong> at checkout!</p>
 </section>
 </main>
 
@@ -144,57 +187,5 @@ footer {
 &copy; 2025 ZC Customs. All rights reserved.
 </footer>
 
-<script>
-// Snowflakes
-for(let i=0;i<50;i++){
-    let snow = document.createElement("div");
-    snow.className = "snowflake";
-    snow.style.left = Math.random() * window.innerWidth + "px";
-    snow.style.animationDuration = (5 + Math.random()*5) + "s";
-    snow.style.fontSize = (10 + Math.random()*20) + "px";
-    snow.innerHTML = "❄";
-    document.body.appendChild(snow);
-}
-
-// Game logic
-const game = document.getElementById('game');
-const rewardText = document.getElementById('reward');
-let codeGiven = false;
-
-// Spawn presents
-function spawnPresent() {
-    if(codeGiven) return;
-    const present = document.createElement('div');
-    present.className = 'present';
-    present.style.left = Math.random() * (game.clientWidth - 50) + 'px';
-    present.style.top = '-50px';
-    present.innerHTML = "🎁";
-    game.appendChild(present);
-
-    // Animate falling
-    let pos = -50;
-    const fallSpeed = 2 + Math.random()*2;
-    const interval = setInterval(() => {
-        pos += fallSpeed;
-        present.style.top = pos + 'px';
-        if(pos > game.clientHeight){
-            clearInterval(interval);
-            game.removeChild(present);
-        }
-    }, 20);
-
-    // Click to get code
-    present.addEventListener('click', () => {
-        if(!codeGiven){
-            rewardText.textContent = "🎉 Congrats! Your 10% off code: 1XMAS0 🎉";
-            codeGiven = true;
-        }
-        game.removeChild(present);
-    });
-}
-
-// Spawn presents every 1.2 seconds
-setInterval(spawnPresent, 1200);
-</script>
 </body>
 </html>
